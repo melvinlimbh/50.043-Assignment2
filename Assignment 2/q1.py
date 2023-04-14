@@ -8,6 +8,5 @@ hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 1").getOrCreate()
 # YOUR CODE GOES BELOW
-df2 = spark.read.csv("/assignment2/part1/input/")
-print("HEREEEEE")
+df2 = spark.read.csv("hdfs::/assignment2/part1/input/")
 df2.printSchema()
