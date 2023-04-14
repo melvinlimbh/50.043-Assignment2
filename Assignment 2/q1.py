@@ -12,4 +12,8 @@ csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.c
 
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 df2.filter(df2["Rating"] == 1.0).filter(df2["Price Range"] != "null").show()
-print("ADVASRGFSGASF!!!!!!!!_____++++++++================")
+print("==============print statements==================")
+with open(hdfs_nn, "r") as f:
+    test = f.readline()
+    print(test["Rating"])
+f.close()
