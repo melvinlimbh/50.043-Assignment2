@@ -1,7 +1,7 @@
 
 # change ~/.aws/credentials after starting every session
 # change the following according to your student numbers
-echo "1005224,1005288\n"
+echo "1005224,1005288"
 
 # change the following according to your environment
 hdfs_namenode="localhost"
@@ -17,13 +17,13 @@ echo "question 1"
 hdfs dfs -rm -r /assignment2/output/question1
 spark-submit q1.py $hdfs_namenode 
 
-echo "question 2" 
-hdfs dfs -rm -r /assignment2/output/question2
-spark-submit q2.py $hdfs_namenode 
+# echo "question 2" 
+# hdfs dfs -rm -r /assignment2/output/question2
+# spark-submit q2.py $hdfs_namenode 
 
-echo "question 3" 
-hdfs dfs -rm -r /assignment2/output/question3
-spark-submit q3.py $hdfs_namenode 
+# echo "question 3" 
+# hdfs dfs -rm -r /assignment2/output/question3
+# spark-submit q3.py $hdfs_namenode 
 
 # echo "question 4"
 # hdfs dfs -rm -r /assignment2/output/question4
