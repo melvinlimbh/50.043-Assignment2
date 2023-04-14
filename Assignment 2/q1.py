@@ -18,8 +18,8 @@ csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.c
 
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 
-df2.filter(df2["Rating"] == 1.0).filter(df2["Price Range"] != "null")
-df2.write.csv("hdfs:///assignment2/output/question1/output.csv")
-df3 = spark.read.csv("hdfs:///assignment2/output/question1/output.csv").show()
+df2.filter(df2["Rating"] == 1.0).filter(alphabets not in df2["Reviews"])
+df2.write.csv("hdfs:///assignment2/output/question1/output.csv", header=True)
+df3 = spark.read.csv("hdfs:///assignment2/output/question1/output.csv",header=True, inferSchema= True).show()
 # print("==============print statements==================")
 # df2.foreach(f)
