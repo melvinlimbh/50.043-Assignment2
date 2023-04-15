@@ -20,4 +20,4 @@ df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 
 df2.filter(df2["Rating"] > 1.0).filter(df2["Reviews"].contains(alphabets))
 df2.write.csv("hdfs:///assignment2/output/question1/output.csv", header=True)
-spark.read.csv("hdfs:///assignment2/output/question1/output.csv",header=True, inferSchema= True).show()
+#spark.read.csv("hdfs:///assignment2/output/question1/output.csv",header=True, inferSchema= True).show()

@@ -16,6 +16,7 @@ find distinct cities, filter by lowest and highest price ranges that are not nul
 csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 print("=================BEFORE=================")
+df2.filter(df2["Price Range"].isNotNull) # remove null
 df2.show()
 print("=================AFTER=================")
 df2.groupBy("City").max("Rating").show()
