@@ -14,7 +14,7 @@ df = (
     .option("delimiter", ",")
     .option("inferSchema", True)
     .option("quotes", '"')
-    .csv("Assignment 2/data/TA_restaurants_curated_cleaned.csv")
+    .csv("hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv")
 )
 
 # remove square brackets
