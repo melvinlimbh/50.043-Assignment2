@@ -18,4 +18,4 @@ df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 print("=================BEFORE=================")
 df2.na.drop("any",subset=["Price Range","Rating"])
 
-best_resturants = df2.groupBy(["Price Range","City"]).agg(max("Rating")).show()
+best_resturants = df2.groupBy("City","Price Range")
