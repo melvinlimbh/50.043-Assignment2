@@ -1,6 +1,5 @@
 import sys
 from pyspark.sql import SparkSession
-from pyspark.sql.functions import col
 
 # you may add more import if you need to
 
@@ -37,17 +36,9 @@ union_places = best_places.union(worst_places)
 
 combined = union_places.join(df2, on=["Price Range", "City", "Rating"], how="inner")
 combined = combined.dropDuplicates(["Price Range", "City", "Rating"]).select(
-        "_c0",
-        "Name",
-        "City",
-        "Cuisine Style",
-        "Ranking",
-        "Rating",
-        "Price Range",
-        "Number of Reviews",
-        "Reviews",
-        "URL_TA",
-        "ID_TA",
+        "_c0","Name","City","Cuisine Style",
+        "Ranking","Rating","Price Range","Number of Reviews",
+        "Reviews","URL_TA","ID_TA",
     ).sort(combined["City"].asc(), combined["Price Range"].asc())
 
 #combined.show()

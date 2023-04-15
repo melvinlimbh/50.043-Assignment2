@@ -1,5 +1,6 @@
 import sys
 from pyspark.sql import SparkSession
+from pyspark.sql.functions import *
 
 # you may add more import if you need to
 
@@ -12,13 +13,12 @@ spark = SparkSession.builder.appName("Assigment 2 Question 3").getOrCreate()
 """
 Reviews = "[[reviews], [dates]]" - find a way to split these
 """
-alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
-sc = spark.sparkContext
 csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
-df2.filter(df2["Reviews"].getItem(0))
 
+test = split(df2["Reviews"], ",")
+print(test)
 
 # moddata = [("review", "Date")]
 # distmodData = sc.parallelize(moddata)
