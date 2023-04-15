@@ -49,7 +49,7 @@ combined = combined.dropDuplicates(["Price Range", "City", "Rating"]).select(
         "Reviews",
         "URL_TA",
         "ID_TA",
-    ).sort(combined["City"].asc(), combined["Price Range"].asc(), combined["Rating"].asc())
+    ).sort(combined["City"].asc(), combined["Price Range"].asc())
 
 #combined.show()
 combined.write.csv("hdfs:///assignment2/output/question2/output.csv", header=True)
