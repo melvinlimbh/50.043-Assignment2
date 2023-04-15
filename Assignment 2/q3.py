@@ -23,7 +23,11 @@ df2 = df2.withColumn("review",reviews_and_dates.getItem(0)).withColumn("date",re
 df2 = df2.withColumn("review", split(df2["review"], "\\', \\'")).withColumn("date", split(df2["date"], "\\', \\'"))
 # now is multiple reviews and dates in 1 line -> split again
 
-#create new dataframe with the 3 columns 
+"""
+put all the reviews and corr. dates together
+explode into new rows with key = review, value = corr. date
+create new dataframe with the 3 columns
+"""
 new_df = df2.withColumn("new", arrays_zip("review", "date")).withColumn("new", explode("new")).select("ID_TA", col("new.review").alias("review"), col("new.date").alias("date"))
 
 #remove inverted commas and square brackets
@@ -33,4 +37,7 @@ new_df = new_df.withColumn("review", regexp_replace("review", "\\[", "")).withCo
 
 # remove leading/trailing whitespace
 new_df = new_df.withColumn("review", trim(new_df.review)).withColumn("date", trim(new_df.date))
-new_df.show()
+#new_df.show()
+
+new_df.write.csv("hdfs:///assignment2/output/question3/output.csv", header=True)
+spark.read.csv("hdfs:///assignment2/output/question3/output.csv",header=True,inferSchema=True).show()
