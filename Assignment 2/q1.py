@@ -12,8 +12,8 @@ alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
 
-df2 = spark.read.csv("hdfs:///assignment2/part1/input/" % (hdfs_nn), header= True, inferSchema=True)
+df2 = spark.read.csv("hdfs:///assignment2/part1/input/", header= True, inferSchema=True)
 
 df2.filter(df2["Rating"] >= 1.0).filter(df2["Reviews"].isNotNull())
-df2.write.csv("hdfs:///assignment2/output/question1/" % (hdfs_nn), header=True)
+df2.write.csv("hdfs:///assignment2/output/question1/", header=True)
 #spark.read.csv("hdfs:///assignment2/output/question1/output.csv",header=True, inferSchema= True).show()
