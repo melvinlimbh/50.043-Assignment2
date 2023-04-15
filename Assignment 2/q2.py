@@ -23,8 +23,6 @@ print("=================BEFORE=================")
 
 #City|Price Range|max(Rating)| -> need to rename "max(Rating)" to "Rating"
 best_places = df2.filter(df2["Price Range"] != "null").groupBy(["City","Price Range"]).max("Rating").withColumnRenamed("max(Rating)","Rating")
-test = spark.createDataFrame(best_places)
-test.show()
 # best_places.show()
 # print("BEST")
 
