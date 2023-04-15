@@ -17,5 +17,6 @@ csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.c
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 print("=================BEFORE=================")
 df2.na.drop("any",subset=["Price Range","Rating"])
+df2.show()
 
-best_resturants = df2.groupBy("City","Price Range")
+best_resturants = df2.groupBy("City","Price Range").agg(max(df2["Rating"]))
