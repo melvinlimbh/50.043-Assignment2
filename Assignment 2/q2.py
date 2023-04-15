@@ -23,12 +23,15 @@ print("=================BEFORE=================")
 #df2.show()
 
 #City|Price Range|max(Rating)| -> need to rename "max(Rating)" to "Rating"
-best_places = df2.filter(df2["Price Range"] != "null").groupBy("City","Price Range").max("Rating").withColumnRenamed("max(Rating)","Rating")
-#best_places.show()
+best_places = df2.filter(df2["Price Range"] != "null").groupBy(["City","Price Range"]).max("Rating").withColumnRenamed("max(Rating)","Rating")
+best_places.show()
+print("BEST")
 
 #City|Price Range|min(Rating)|
-worst_places =  df2.filter(df2["Price Range"] != "null").groupBy("City","Price Range").min("Rating").withColumnRenamed("min(Rating)","Rating")
-#worst_places.show()
+worst_places =  df2.filter(df2["Price Range"] != "null").groupBy(["City","Price Range"]).min("Rating").withColumnRenamed("min(Rating)","Rating")
+worst_places.show()
+print("WORSE")
 
 union_places = best_places.union(worst_places)
 union_places.show()
+print("UNION")
