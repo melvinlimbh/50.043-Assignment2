@@ -21,8 +21,9 @@ reviews_and_dates = split(df2["Reviews"],"\\], \\[")
 df2 = df2.withColumn("Review",reviews_and_dates.getItem(0)).withColumn("Date",reviews_and_dates.getItem(1))
 # now is multiple reviews and dates in 1 line -> split again
 
+df2 = df2.withColumn("Review", split(df2["Review"], "\\', \\'")).withColumn(
+    "Date", split(df2["Date"], "\\', \\'"))
+    
 df2.show()
 
-df2 = df2.withColumn("Review", split(df2["Review"], "\\', \\'")).withColumn(
-    "Date", split(df2["Date"], "\\', \\'")
-)
+new_df = df2.withColumn("new", arrays_zip("review", "date")).withColumn("new", explode("new")).select("ID_TA", col("new.review").alias("review"), col("new.date").alias("date"))
