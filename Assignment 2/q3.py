@@ -9,11 +9,18 @@ hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 3").getOrCreate()
 # YOUR CODE GOES BELOW
+"""
+"[[reviews], [dates]]" - find a way to split these
+"""
+alphabets = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
 def f(row):
-    return list[row][-1]
+    str(row).split(",")
+    print(length = len(row))
+
 sc = spark.sparkContext
 csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
+df2.filter(df2["Reviews"].contains(alphabets))
 date = df2.select(df2["Reviews"]).toDF("Date")
 date.foreach(f)
 
