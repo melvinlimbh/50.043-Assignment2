@@ -24,7 +24,7 @@ df2 = df2.withColumn("review", split(df2["review"], "\\', \\'")).withColumn("dat
 # now is multiple reviews and dates in 1 line -> split again
 
 #create new dataframe with the 3 columns 
-new_df = df2.withColumn("new", arrays_zip("review", "date")).withColumn("new", explode("new")).select("ID_TA", df2["new.review"].alias("review"), df2["new.date"].alias("date"))
+new_df = df2.withColumn("new", arrays_zip("review", "date")).withColumn("new", explode("new")).select("ID_TA", col("new.review").alias("review"), col("new.date").alias("date"))
 
 #remove inverted commas and square brackets
 new_df = new_df.withColumn("review", regexp_replace("review", "'", "")).withColumn("date", regexp_replace("date", "'", ""))
