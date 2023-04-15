@@ -51,4 +51,6 @@ combined = combined.dropDuplicates(["Price Range", "City", "Rating"]).select(
         "ID_TA",
     ).sort(combined["City"].asc(), combined["Price Range"].asc())
 
-combined.show()
+#combined.show()
+combined.write.csv("hdfs:///assignment2/output/question2/output.csv", header=True)
+spark.read.csv("hdfs:///assignment2/output/question2/output.csv", header= True, inferSchema=True).show()
