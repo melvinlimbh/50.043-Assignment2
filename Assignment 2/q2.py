@@ -24,17 +24,17 @@ print("=================BEFORE=================")
 
 #City|Price Range|max(Rating)| -> need to rename "max(Rating)" to "Rating"
 best_places = df2.filter(df2["Price Range"] != "null").groupBy(["City","Price Range"]).max("Rating").withColumnRenamed("max(Rating)","Rating")
-best_places.show()
-print("BEST")
+# best_places.show()
+# print("BEST")
 
 #City|Price Range|min(Rating)|
 worst_places =  df2.filter(df2["Price Range"] != "null").groupBy(["City","Price Range"]).min("Rating").withColumnRenamed("min(Rating)","Rating")
-worst_places.show()
-print("WORSE")
+# worst_places.show()
+# print("WORSE")
 
 union_places = best_places.union(worst_places)
-union_places.show()
-print("UNION")
+# union_places.show()
+# print("UNION")
 
 combined = union_places.join(df2, on=["Price Range", "City", "Rating"], how="inner")
 combined = combined.dropDuplicates(["Price Range", "City", "Rating"]).select(
@@ -49,8 +49,6 @@ combined = combined.dropDuplicates(["Price Range", "City", "Rating"]).select(
         "Reviews",
         "URL_TA",
         "ID_TA",
-    ).sort(combined["City"].asc())
-# unordered rows at this point -> City names not in order
+    ).sort(combined["City"].asc(), combined["Price Range"].asc())
 
-#combined.sort(combined["City"].asc())
 combined.show()
