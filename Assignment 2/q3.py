@@ -17,8 +17,9 @@ Reviews = "[[reviews], [dates]]" - find a way to split these
 csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 
-test = split(df2["Reviews"], ",")
-test.show()
+reviews_and_dates = split(df2["Reviews"],"\\], \\[")
+df2 = df2.withColumn("Review",reviews_and_dates.getItem(0)).withColumn("Date",reviews_and_dates.getItem(1))
+df2.show()
 
 # moddata = [("review", "Date")]
 # distmodData = sc.parallelize(moddata)
