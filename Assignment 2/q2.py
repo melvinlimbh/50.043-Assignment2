@@ -9,9 +9,13 @@ hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 2").getOrCreate()
 # YOUR CODE GOES BELOW
+"""
+find distinct cities, filter by lowest and highest price ranges that are not null
+"""
+
 csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
-df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
-print("MAX")
-df3 = df2.groupBy(df2["City"]).max().show()
-print("MIN")
-df4 = df2.groupBy(df2["City"]).min().show()
+df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True).show()
+print("AFTER")
+df3 = df2.filter(df2["Price Range"] != " ").show()
+# print("MIN")
+# df4 = df2.groupBy(df2["City"]).min().show()
