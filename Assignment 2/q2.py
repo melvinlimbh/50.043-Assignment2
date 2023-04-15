@@ -49,6 +49,8 @@ combined = combined.dropDuplicates(["Price Range", "City", "Rating"]).select(
         "Reviews",
         "URL_TA",
         "ID_TA",
-    )
+    ).sort(combined["City"].asc())
+# unordered rows at this point -> City names not in order
 
+#combined.sort(combined["City"].asc())
 combined.show()
