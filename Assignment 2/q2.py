@@ -35,3 +35,20 @@ print("WORSE")
 union_places = best_places.union(worst_places)
 union_places.show()
 print("UNION")
+
+combined = union_places.join(df2, on=["Price Range", "City", "Rating"], how="inner")
+combined = combined.dropDuplicates(["Price Range", "City", "Rating"]).select(
+        "_c0",
+        "Name",
+        "City",
+        "Cuisine Style",
+        "Ranking",
+        "Rating",
+        "Price Range",
+        "Number of Reviews",
+        "Reviews",
+        "URL_TA",
+        "ID_TA",
+    )
+
+combined.show()
