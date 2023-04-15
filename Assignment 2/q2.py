@@ -11,7 +11,9 @@ hdfs_nn = sys.argv[1]
 spark = SparkSession.builder.appName("Assigment 2 Question 2").getOrCreate()
 # YOUR CODE GOES BELOW
 """
-find highest and lowest ratings -> join
+find highest and lowest ratings 
+-> union to combine attributes selected 
+-> join to have all the other columns
 """
 
 csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
@@ -22,8 +24,11 @@ print("=================BEFORE=================")
 
 #City|Price Range|max(Rating)| -> need to rename "max(Rating)" to "Rating"
 best_places = df2.filter(df2["Price Range"] != "null").groupBy("City","Price Range").max("Rating").withColumnRenamed("max(Rating)","Rating")
-best_places.show()
+#best_places.show()
 
 #City|Price Range|min(Rating)|
-worst_places =  df2.filter(df2["Price Range"] != "null").groupBy("City","Price Range").min("Rating")
-worst_places.show()
+worst_places =  df2.filter(df2["Price Range"] != "null").groupBy("City","Price Range").min("Rating").withColumnRenamed("min(Rating)","Rating")
+#worst_places.show()
+
+union_places = best_places.union(worst_places)
+union_places.show()
