@@ -16,7 +16,7 @@ find highest and lowest ratings
 """
 csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
-print("=================BEFORE=================")
+#print("=================BEFORE=================")
 #df2.filter(df2["Rating"].isNotNull)
 #df2.show()
 
@@ -44,4 +44,4 @@ combined = combined.dropDuplicates(["Price Range", "City", "Rating"]).select(
 #combined.show()
 combined.write.csv("hdfs:///assignment2/output/question2/output.csv", header=True)
 df3 = spark.read.csv("hdfs:///assignment2/output/question2/output.csv", header= True, inferSchema=True)
-df3.sort(df3["City"].asc()).show()
+df3.sort(df3["City"].asc(), df3["Price Range"].asc()).show()
