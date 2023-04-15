@@ -19,9 +19,10 @@ df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 
 reviews_and_dates = split(df2["Reviews"],"\\], \\[")
 df2 = df2.withColumn("Review",reviews_and_dates.getItem(0)).withColumn("Date",reviews_and_dates.getItem(1))
+# now is multiple reviews and dates in 1 line -> split again
+
 df2.show()
 
-# moddata = [("review", "Date")]
-# distmodData = sc.parallelize(moddata)
-# moddf = distmodData.toDF(["review", "Date"])
-# df2.join(moddf, "inner").select(df2["ID_TA"]).show()
+df2 = df2.withColumn("Review", split(df2["Review"], "\\', \\'")).withColumn(
+    "Date", split(df2["Date"], "\\', \\'")
+)
