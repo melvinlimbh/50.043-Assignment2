@@ -18,7 +18,7 @@ csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.c
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 
 test = split(df2["Reviews"], ",")
-print(test)
+
 
 # moddata = [("review", "Date")]
 # distmodData = sc.parallelize(moddata)

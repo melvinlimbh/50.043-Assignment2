@@ -8,7 +8,7 @@ hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 1").getOrCreate()
 # YOUR CODE GOES BELOW
-csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
+csv_file_path ="hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
 
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 
