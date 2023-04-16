@@ -14,7 +14,7 @@ find highest and lowest ratings
 -> union to combine attributes selected 
 -> join to have all the other columns
 """
-csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
+csv_file_path = "hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv" % hdfs_nn
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 #print("=================BEFORE=================")
 #df2.filter(df2["Rating"].isNotNull)
@@ -42,6 +42,6 @@ combined = combined.dropDuplicates(["Price Range", "City", "Rating"]).select(
     ).sort(combined["City"].asc(), combined["Price Range"].asc())
 
 #combined.show()
-combined.write.csv("hdfs:///assignment2/output/question2/output.csv", header=True)
-df3 = spark.read.csv("hdfs:///assignment2/output/question2/output.csv", header= True, inferSchema=True)
+combined.write.csv("hdfs://%s:9000/assignment2/output/question2/" % hdfs_nn, header=True)
+df3 = spark.read.csv("hdfs://%s:9000/assignment2/output/question2/" % hdfs_nn, header= True, inferSchema=True)
 df3.sort(df3["City"].asc(), df3["Price Range"].asc()).show()
