@@ -5,7 +5,7 @@ from pyspark.sql.functions import from_json, explode, col, array, array_sort
 from pyspark.sql.types import ArrayType, StructType, StructField, StringType
 
 # don't change this line
-#hdfs_nn = sys.argv[1]
+hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 5").getOrCreate()
 # YOUR CODE GOES BELOW
@@ -18,7 +18,7 @@ df = (
     .option("delimiter", ",")
     .option("inferSchema", True)
     .option("quotes", '"')
-    .parquet("/Users/limboonhanmelvin/Downloads/hw2/data/tmdb_5000_credits.parquet")
+    .parquet("hdfs://%s:9000/assignment2/part2/input/tmdb_5000_credits.parquet" % hdfs_nn)
 )
 
 df = df.drop("crew")
@@ -46,6 +46,6 @@ new_df = (
 new_df.show()
 
 new_df.write.option("header", True).mode("overwrite").parquet(
-    "/Users/limboonhanmelvin/Downloads/hw2/data/tmdb_5000_credits.parquet"
+    "hdfs://%s:9000/assignment2/output/question5/" % (hdfs_nn)
 )
-print("HERE========",new_df.count())
+#print(new_df.count())
