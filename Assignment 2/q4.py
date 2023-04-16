@@ -5,7 +5,7 @@ from pyspark.sql import SparkSession
 from pyspark.sql.functions import regexp_replace, split, explode, col, trim, count
 
 # don't change this line
-# hdfs_nn = sys.argv[1]
+hdfs_nn = sys.argv[1]
 
 spark = SparkSession.builder.appName("Assigment 2 Question 4").getOrCreate()
 # YOUR CODE GOES BELOW
@@ -14,7 +14,7 @@ df = (
     .option("delimiter", ",")
     .option("inferSchema", True)
     .option("quotes", '"')
-    .csv("hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv")
+    .csv("hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv" % hdfs_nn)
 )
 
 # remove square brackets
@@ -34,5 +34,5 @@ new_df = new_df.select(
     col("Cuisine"),
     col("count")
 )
-
-new_df.show()
+new_df.write.csv("hdfs://%s:9000/assignment2/output/question4/" % hdfs_nn, header=True)
+spark.read.csv("hdfs://%s:9000/assignment2/output/question4/" % hdfs_nn, header=True, inferSchema=True).show()
