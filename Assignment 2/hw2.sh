@@ -4,7 +4,10 @@
 echo "1005224,1005288"
 
 # change the following according to your environment
-hdfs_namenode="172.31.24.68"
+"""
+this should be the master node ip
+"""
+hdfs_namenode="172.31.24.68" 
 
 # don't change following
 

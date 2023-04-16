@@ -40,4 +40,4 @@ new_df = new_df.withColumn("review", trim(new_df.review)).withColumn("date", tri
 #new_df.show()
 
 new_df.write.csv("hdfs://%s:9000/assignment2/output/question3/" % hdfs_nn, header=True)
-spark.read.csv("hdfs://%s:9000/assignment2/output/question2/" % hdfs_nn ,header=True,inferSchema=True).show()
+spark.read.csv("hdfs://%s:9000/assignment2/output/question3/" % hdfs_nn ,header=True,inferSchema=True).show()
