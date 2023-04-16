@@ -35,4 +35,4 @@ new_df = new_df.select(
     col("count")
 )
 new_df.write.csv("hdfs://%s:9000/assignment2/output/question4/" % hdfs_nn, header=True)
-spark.read.csv("hdfs://%s:9000/assignment2/output/question4/" % hdfs_nn, header=True, inferSchema=True).show()
+new_df.show()
