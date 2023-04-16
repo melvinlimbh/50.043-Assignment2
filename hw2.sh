@@ -28,9 +28,9 @@ hdfs dfs -put ./data/TA_restaurants_curated_cleaned.csv /assignment2/part1/input
 # hdfs dfs -rm -r /assignment2/output/question3
 # spark-submit q3.py $hdfs_namenode 
 
-echo "question 4"
-hdfs dfs -rm -r /assignment2/output/question4
-spark-submit q4.py $hdfs_namenode 
+# echo "question 4"
+# hdfs dfs -rm -r /assignment2/output/question4
+# spark-submit q4.py $hdfs_namenode 
 
 # echo "part2"
 # hdfs dfs -rm -r /assignment2/part2/
@@ -38,8 +38,8 @@ spark-submit q4.py $hdfs_namenode
 # hdfs dfs -put ./data/tmdb_5000_credits.parquet /assignment2/part2/input/tmdb_5000_credits.parquet
 
 
-# echo "question 5"
-# hdfs dfs -rm -r /assignment2/output/question5
-# spark-submit q5.py $hdfs_namenode 
+echo "question 5"
+hdfs dfs -rm -r /assignment2/output/question5
+spark-submit q5.py $hdfs_namenode 
 
 
