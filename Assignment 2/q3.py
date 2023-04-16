@@ -14,7 +14,7 @@ spark = SparkSession.builder.appName("Assigment 2 Question 3").getOrCreate()
 Reviews = "[[reviews], [dates]]" - find a way to split these
 """
 
-csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.csv"
+csv_file_path = "hdfs://%s:9000/assignment2/part1/input/TA_restaurants_curated_cleaned.csv" % hdfs_nn
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 
 reviews_and_dates = split(df2["Reviews"],"\\], \\[")
@@ -39,5 +39,5 @@ new_df = new_df.withColumn("review", regexp_replace("review", "\\[", "")).withCo
 new_df = new_df.withColumn("review", trim(new_df.review)).withColumn("date", trim(new_df.date))
 #new_df.show()
 
-new_df.write.csv("hdfs:///assignment2/output/question3/output.csv", header=True)
-spark.read.csv("hdfs:///assignment2/output/question3/output.csv",header=True,inferSchema=True).show()
+new_df.write.csv("hdfs://%s:9000/assignment2/output/question3/" % hdfs_nn, header=True)
+spark.read.csv("hdfs://%s:9000/assignment2/output/question2/" % hdfs_nn ,header=True,inferSchema=True).show()
