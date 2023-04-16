@@ -12,6 +12,7 @@ csv_file_path ="hdfs:///assignment2/part1/input/TA_restaurants_curated_cleaned.c
 
 df2 = spark.read.csv(csv_file_path, header= True, inferSchema=True)
 
-df2.filter(df2["Rating"] >= 1.0).filter(df2["Reviews"].isNotNull())
+df2 = df2.filter((df2["Reviews"] != "[ [  ], [  ] ]")).filter(df2["Reviews"].isNotNull())
+df2 = df2.filter((df2["Rating"] >= 1.0))
 df2.write.csv("hdfs:///assignment2/output/question1/output.csv", header=True)
 spark.read.csv("hdfs:///assignment2/output/question1/output.csv",header=True, inferSchema= True).show()
