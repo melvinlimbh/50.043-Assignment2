@@ -34,7 +34,6 @@ new_df = df2.withColumn("new", arrays_zip("review", "date")).withColumn("new", e
 new_df = new_df.withColumn("review", regexp_replace("review", "'", "")).withColumn("date", regexp_replace("date", "'", ""))
 new_df = new_df.withColumn("review", regexp_replace("review", "\\[", "")).withColumn("date", regexp_replace("date", "\\]", ""))
 
-
 # remove leading/trailing whitespace
 new_df = new_df.withColumn("review", trim(new_df.review)).withColumn("date", trim(new_df.date))
 #new_df.show()
