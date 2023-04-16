@@ -44,3 +44,7 @@ new_df = (
 )
 
 new_df.show()
+
+new_df.write.option("header", True).mode("overwrite").parquet(
+    "hdfs://%s:9000/assignment2/output/question5/" % (hdfs_nn)
+)
