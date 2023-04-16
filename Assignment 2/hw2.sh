@@ -14,7 +14,7 @@ hdfs dfs -mkdir -p /assignment2/part1/input/
 hdfs dfs -put ./data/TA_restaurants_curated_cleaned.csv /assignment2/part1/input/TA_restaurants_curated_cleaned.csv
 
 echo "question 1"
-#hdfs dfs -rm -r /assignment2/output/question1
+hdfs dfs -rm -r /assignment2/output/question1
 spark-submit q1.py $hdfs_namenode 
 
 # echo "question 2" 
