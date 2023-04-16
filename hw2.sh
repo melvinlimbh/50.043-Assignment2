@@ -4,10 +4,7 @@
 echo "1005224,1005288"
 
 # change the following according to your environment
-"""
-this should be the master node ip
-"""
-hdfs_namenode="172.31.24.68" 
+hdfs_namenode="172.31.24.68" #this should be the master node ip
 
 # don't change following
 
@@ -32,10 +29,10 @@ hdfs dfs -put ./data/TA_restaurants_curated_cleaned.csv /assignment2/part1/input
 # hdfs dfs -rm -r /assignment2/output/question4
 # spark-submit q4.py $hdfs_namenode 
 
-# echo "part2"
-# hdfs dfs -rm -r /assignment2/part2/
-# hdfs dfs -mkdir -p /assignment2/part2/input/
-# hdfs dfs -put ./data/tmdb_5000_credits.parquet /assignment2/part2/input/tmdb_5000_credits.parquet
+echo "part2"
+hdfs dfs -rm -r /assignment2/part2/
+hdfs dfs -mkdir -p /assignment2/part2/input/
+hdfs dfs -put ./data/tmdb_5000_credits.parquet /assignment2/part2/input/tmdb_5000_credits.parquet
 
 
 echo "question 5"
