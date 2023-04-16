@@ -4,7 +4,7 @@
 echo "1005224,1005288"
 
 # change the following according to your environment
-hdfs_namenode="localhost"
+hdfs_namenode="172.31.24.68"
 
 # don't change following
 
@@ -14,7 +14,7 @@ hdfs dfs -mkdir -p /assignment2/part1/input/
 hdfs dfs -put ./data/TA_restaurants_curated_cleaned.csv /assignment2/part1/input/TA_restaurants_curated_cleaned.csv
 
 echo "question 1"
-hdfs dfs -rm -r /assignment2/output/question1
+#hdfs dfs -rm -r /assignment2/output/question1
 spark-submit q1.py $hdfs_namenode 
 
 # echo "question 2" 
